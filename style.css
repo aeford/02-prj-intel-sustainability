@@ -1,1 +1,226 @@
 /* Add your CSS here */
+
+/* Use a sans-serif font for the whole page */
+body {
+  /* Set a simple, easy-to-read sans-serif font */
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Center the text at the bottom of the website */
+body > p {
+  text-align: center;
+  margin-top: 20px;
+  color: #333;
+  font-size: 1.1em;
+  /* make text bold */
+  font-weight: bold;
+}
+
+/* Hero section styles */
+.hero {
+  /* Gradient background with a subtle pattern overlay for more visual interest */
+  background: linear-gradient(
+    to right,
+    #42a8f6 0%,
+    #0159a1 100%
+  ),
+  /* Add a subtle repeating pattern using a semi-transparent SVG as a background image */
+  url("data:image/svg+xml;utf8,<svg width='40' height='40' viewBox='0 0 40 40' fill='none' xmlns='http://www.w3.org/2000/svg'><circle cx='20' cy='20' r='2' fill='white' fill-opacity='0.08'/></svg>");
+  background-repeat: repeat;
+  /* Add some padding around the content */
+  padding: 60px 0 50px 0; /* More padding for a spacious look */
+  /* Center the text and image */
+  text-align: center;
+  /* Make text color white for contrast */
+  color: white;
+}
+
+/* Add space below the main heading in the hero section */
+.hero h1 {
+  /* Add margin below the h1 to separate it from the paragraph */
+  margin-bottom: 30px;
+ 
+  /* Center the heading horizontally */
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 2.75em;
+  text-align: center;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+  /* Add a box around the heading */
+  border: 2px solid #fff; /* White border for contrast */
+  border-radius: 16px; /* More rounded corners */
+  background: rgba(0, 0, 0, 0.22); /* Slightly more visible background */
+  padding: 20px 36px;  /* More padding for a bolder look */
+  box-shadow: 0 4px 24px rgba(66,168,246,0.18); /* Stronger blue shadow */
+  display: block;      /* Make the box take a new line under the logo */
+  margin-top: 20px;    /* Add space above the box (under the logo) */
+ /* Limit the width of the heading */
+  max-width: 800px; /* Set the maximum width for the box */
+}
+/* Make the hero paragraph the same width as the h1 */
+.hero p {
+  /* Limit the width of the paragraph */
+  max-width: 500px;
+  /* Center the paragraph horizontally */
+  margin-left: auto;
+  margin-right: auto;
+  /* Double space the paragraph for readability */
+  line-height: 2;
+  /* increase font size for better readability */
+  font-size: 1.2em;
+}
+
+/* Add a soft glow to the logo for emphasis */
+.hero img {
+  /* Add space above the logo */
+  margin-top: 0px;
+  /* Make the logo smaller */
+  max-width: 120px;
+  /* Add some space below the logo */
+  margin-bottom: 0px;
+  filter: drop-shadow(0 0 12px #42a8f6);
+}
+
+/* Timeline section uses Flexbox to arrange cards in a row */
+.timeline {
+  /* Use flexbox to lay out children in a row */
+  display: flex;
+  /* Allow horizontal scrolling if there are many cards */
+  overflow-x: auto;
+  /* Add some space above and below the timeline */
+  margin: 40px 0;
+  /* Add a little space between the timeline and the edge of the page */
+  padding: 20px 10px;
+  /* Optional: add a light background for the timeline area */
+  background: #0071c5;
+  /* Set width so only 4 cards are fully visible at a time (4*250px + 3*16px = 1048px) */
+  width: 1185px;
+  max-width: 1185px;
+  /* Center the timeline on the page */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Each card in the timeline */
+.card {
+  /* Give cards a white background */
+  background: white;
+  /* Add a border and rounded corners */
+  border: 1px solid #ddd;
+  border-radius: 0px;
+  /* Add some space inside the card */
+  padding: 16px;
+  /* Add space between cards */
+  margin-right: 16px;
+  /* Set a fixed width for each card */
+  width: 250px;
+  /* Make sure cards don't shrink too small */
+  flex: 0 0 auto;
+  /* Add a little shadow for depth */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  /* Transition for hover effect */
+  transition: transform 0.2s;
+  position: relative; /* Needed for overlay positioning */
+  overflow: hidden;   /* Hide overflow for overlay effect */
+}
+
+/* Simple hover effect for cards */
+.card:hover {
+  /* Slightly lift the card when hovered */
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+/* Make card images fit the card width */
+.card img {
+  width: 100%;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  /* Make the card images longer (taller) */
+  height: 160px;           /* Increase the height */
+  object-fit: cover;       /* Crop image to fill the area */
+}
+
+/* Hide the card's paragraph text by default and prepare overlay */
+.card p {
+  /* Start hidden */
+  display: block;
+  /* Position absolutely to cover the card */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Center text vertically and horizontally */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Center text inside the overlay */
+  text-align: center;
+  /* Overlay background: semi-transparent black */
+  background: rgba(0, 0, 0, 0.85);
+  /* Hide the overlay by default */
+  opacity: 0;
+  /* Make text white for contrast */
+  color: #fff;
+  /* Add padding for readability */
+  padding: 20px 20px 20px 20px; /* Top padding increased to leave space for year */
+  /* Smooth fade-in transition */
+  transition: opacity 0.2s;
+  /* Make sure overlay is above other content */
+  z-index: 1;
+  /* Rounded corners to match card */
+  border-radius: 8px;
+  /* Hide pointer events so only the card triggers hover */
+  pointer-events: none;
+  /* Prevent text from overflowing the card */
+  overflow-y: auto;
+  /* If text is too long, add a scrollbar inside the overlay */
+  word-break: break-word;
+  /* Make sure padding doesn't cause overflow */
+  box-sizing: border-box;
+}
+
+/* Show the overlay text when the card is hovered */
+.card:hover p {
+  /* Show the overlay */
+  opacity: 1;
+  /* Allow interaction with overlay if needed */
+  pointer-events: auto;
+  /* Make the light blue overlay more opaque */
+  background: rgba(174, 210, 237, 0.98); /* More opaque light blue */
+  color: #000000;
+}
+
+/* Add a fade-in animation to the hero section for engagement */
+@keyframes heroFadeIn {
+  from { opacity: 0; transform: translateY(-30px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+.hero {
+  animation: heroFadeIn 1.2s ease;
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 600px) {
+  .timeline {
+    /* Stack the cards vertically on small screens */
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    padding: 5px 0;
+    /* Remove horizontal scrolling */
+    overflow-x: visible;
+  }
+  .card {
+    /* Make cards take full width on mobile */
+    width: 95vw;
+    min-width: 0;
+    max-width: 100%;
+    margin-right: 0;
+    margin-bottom: 16px; /* Add space between stacked cards */
+    padding: 10px;
+  }
+}
