@@ -2,8 +2,8 @@
 
 /* Use a sans-serif font for the whole page */
 body {
-  /* Set a simple, easy-to-read sans-serif font */
-  font-family: Arial, Helvetica, sans-serif;
+  /* Use a font similar to the Intel logo */
+  font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
 }
 
 /* Center the text at the bottom of the website */
@@ -91,16 +91,23 @@ body > p {
   overflow-x: auto;
   /* Add some space above and below the timeline */
   margin: 40px 0;
-  /* Add a little space between the timeline and the edge of the page */
-  padding: 20px 10px;
-  /* Optional: add a light background for the timeline area */
-  background: #0071c5;
-  /* Set width so only 4 cards are fully visible at a time (4*250px + 3*16px = 1048px) */
-  width: 1185px;
-  max-width: 1185px;
+  /* Remove the fixed width */
+  width: 1160px;
+  max-width: 1160px;
   /* Center the timeline on the page */
   margin-left: auto;
   margin-right: auto;
+  /* Enable horizontal scroll snap */
+  scroll-snap-type: x mandatory;
+  /* Add scroll padding so cards are not flush with the edge when snapped */
+  scroll-padding: 10px;
+  /* Keep your padding */
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  /* Optional: add a light background for the timeline area */
+  background: #0071c5;
 }
 
 /* Each card in the timeline */
@@ -124,6 +131,8 @@ body > p {
   transition: transform 0.2s;
   position: relative; /* Needed for overlay positioning */
   overflow: hidden;   /* Hide overflow for overlay effect */
+  /* Make each card snap to the end of the scroll area */
+  scroll-snap-align: start;
 }
 
 /* Simple hover effect for cards */
