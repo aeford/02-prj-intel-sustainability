@@ -92,8 +92,8 @@ body > p {
   /* Add some space above and below the timeline */
   margin: 40px 0;
   /* Remove the fixed width */
-  width: 1160px;
-  max-width: 1160px;
+  width: 1070px;
+  max-width: 1070px;
   /* Center the timeline on the page */
   margin-left: auto;
   margin-right: auto;
@@ -108,6 +108,7 @@ body > p {
   padding-bottom: 20px;
   /* Optional: add a light background for the timeline area */
   background: #0071c5;
+  border-radius: 24px; /* Make the timeline background rounded */
 }
 
 /* Each card in the timeline */
@@ -116,7 +117,7 @@ body > p {
   background: white;
   /* Add a border and rounded corners */
   border: 1px solid #ddd;
-  border-radius: 0px;
+  border-radius: 16px; /* Make card edges rounded */
   /* Add some space inside the card */
   padding: 16px;
   /* Add space between cards */
@@ -148,7 +149,7 @@ body > p {
   border-radius: 4px;
   margin-bottom: 10px;
   /* Make the card images longer (taller) */
-  height: 160px;           /* Increase the height */
+  height: 200px;           /* Increase the height */
   object-fit: cover;       /* Crop image to fill the area */
 }
 
@@ -181,7 +182,7 @@ body > p {
   /* Make sure overlay is above other content */
   z-index: 1;
   /* Rounded corners to match card */
-  border-radius: 8px;
+  border-radius: 16px; /* Match overlay corners to card */
   /* Hide pointer events so only the card triggers hover */
   pointer-events: none;
   /* Prevent text from overflowing the card */
@@ -203,6 +204,99 @@ body > p {
   color: #000000;
 }
 
+/* Make the card headings smaller for a cleaner look */
+.card h2 {
+  font-size: 2em;   /* Smaller year text */
+  margin-bottom: 4px; /* Less space below */
+}
+
+.card h3 {
+  font-size: 1.42em;     /* Smaller title text */
+  margin-bottom: 8px; /* Less space below */
+  font-weight: normal;/* Not bold for a softer look */
+}
+
+/* Make the info columns fit inside a rounded, blue container like the timeline */
+.timeline-info {
+  background: #fdfefe;           /* Same blue as timeline */
+  border-radius: 24px;           /* Rounded corners */
+  max-width: 1160px;             /* Match timeline width */
+  margin: 40px auto 0 auto;      /* Center and add space above */
+  padding: 20px 20px 10px 20px;  /* Padding inside the container */
+}
+
+/* Add a blue outline and rounded corners to each info column */
+.timeline-info .col {
+  margin-bottom: 20px;
+  border: 2px solid #0071c5;    /* Blue outline */
+  border-radius: 16px;          /* Rounded corners */
+  background: #fff;             /* White background for contrast */
+  padding: 28px 18px 22px 18px; /* More padding for a spacious look */
+  box-shadow: 0 4px 16px rgba(0,113,197,0.08); /* Slightly stronger blue shadow */
+  margin-right: 16px;           /* Add space to the right of each column */
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-align: left;             /* Left align for easier reading */
+  position: relative;           /* For icon positioning */
+}
+
+/* Remove right margin from the last column in the row */
+.timeline-info .col:last-child {
+  margin-right: 0;
+}
+
+/* Make the SVG icons larger and add space */
+.timeline-info .col h2 svg {
+  vertical-align: middle;
+  margin: 0 6px 0 0;
+  height: 32px;
+  width: 32px;
+  fill: #0071c5;
+}
+
+/* Style the heading for more impact */
+.timeline-info .col h2 {
+  font-size: 1.35em;
+  font-weight: bold;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Style the paragraph for readability */
+.timeline-info .col p {
+  font-size: 1.08em;
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+
+/* Style the Learn More button for more space */
+.timeline-info .col .btn {
+  margin-top: 14px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  border-radius: 8px;
+  padding: 8px 22px;
+}
+
+/* Add a subtle hover effect to the columns */
+.timeline-info .col:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 8px 28px rgba(0,113,197,0.16);
+  border-color: #42a8f6;
+}
+
+/* Responsive: stack columns vertically on small screens */
+@media (max-width: 900px) {
+  .timeline-info .row {
+    flex-direction: column;
+  }
+  .timeline-info .col {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+}
+
 /* Add a fade-in animation to the hero section for engagement */
 @keyframes heroFadeIn {
   from { opacity: 0; transform: translateY(-30px);}
@@ -210,6 +304,27 @@ body > p {
 }
 .hero {
   animation: heroFadeIn 1.2s ease;
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 900px) {
+  /* Make the timeline section use column layout on tablets and phones */
+  .timeline {
+    flex-direction: column;      /* Stack cards vertically */
+    width: 100%;                 /* Use full width */
+    max-width: 100%;             /* Remove max-width limit */
+    padding: 10px 0;             /* Less padding on small screens */
+    overflow-x: visible;         /* No horizontal scroll */
+    align-items: center;         /* Center cards */
+  }
+  .card {
+    width: 95vw;                 /* Card fills most of the screen width */
+    min-width: 0;
+    max-width: 500px;            /* Limit max width for readability */
+    margin-right: 0;
+    margin-bottom: 20px;         /* Space between stacked cards */
+    padding: 10px;
+  }
 }
 
 /* Responsive styles for smaller screens */
@@ -232,4 +347,36 @@ body > p {
     margin-bottom: 16px; /* Add space between stacked cards */
     padding: 10px;
   }
+}
+
+/* Flip the timeline direction for RTL languages */
+html.rtl .timeline {
+  flex-direction: row-reverse; /* Show first card on the right for RTL */
+}
+
+/* Add a hover effect to the email input in the newsletter form */
+form input[type="email"]:hover,
+form input[type="email"]:focus {
+  border-color: #0071c5;      /* Blue border on hover/focus */
+  box-shadow: 0 0 0 0.15rem rgba(66,168,246,0.18); /* Soft blue glow */
+  outline: none;              /* Remove default outline */
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* style the footer */
+.footer-custom {
+  background-color: #eaeef1; /* Slightly darker than Bootstrap's bg-light */
+}
+
+/* Make footer navigation links darker for better contrast */
+.footer-custom a {
+  color: #0071c5; /* Blue for links */
+  font-weight: bold;
+}
+
+/* Make footer navigation links even darker on hover */
+.footer-custom a:hover,
+.footer-custom a:focus {
+  color: #003366; /* Very dark blue on hover/focus */
+  text-decoration: underline;
 }
